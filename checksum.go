@@ -75,11 +75,11 @@ func getSigningKey() *openpgp.Entity {
 
 	ensureFileExists(keyringFile)
 	keyring, err := os.Open(keyringFile)
-	defer keyring.Close()
 
 	if err != nil {
 		log.Fatalln("Could not read keyring file.")
 	}
+	defer keyring.Close()
 
 	signers, err := openpgp.ReadKeyRing(keyring)
 
